@@ -2,10 +2,11 @@ sudo yum update -y
 sudo yum install nginx -y
 sudo yum install git -y
 git clone https://github.com/nathanielazevedo/wdi-back.git
+cd wdi-back
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 pip install gunicorn
-sudo cp /wdi-back.conf /etc/nginx/conf.d/wdi-back.conf
+sudo vim /etc/nginx/conf.d/wdi-back.conf
 sudo systemctl restart nginx
 gunicorn -b 127.0.0.1:5000 app:app
